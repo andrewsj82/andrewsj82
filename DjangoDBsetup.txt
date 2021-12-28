@@ -1,0 +1,45 @@
+Setting Up a django environment to create a DB:
+
+1. create the directory
+	mk dir /c/python/projects/*****
+2. move to the directory
+	cd c/python/projects/*****
+3. activate the virtual environment
+	python -m venv virtual
+4. install django in the environment
+	pip install django
+5. check to make sure install was successful
+	pip freeze
+6. create the project django CL admin utility
+	django-admin startProject djangoDB (*****)
+7. create the project 
+	python manage.py startapp website (*****)
+8. go to Virtual Studio and add the created project folder
+9. inside the created project, open the djangoDB folder, urls.py file
+	add ",include" to the end of the 2nd from statement
+	add "path('', include('website.urls'))" to the urlpatterns list
+10. in the website folder in the main branch of the project, add a urls.py file
+11. in the urls.p file, copy the previous info from the urls.py file in the djangoDB folder with the following info:
+	from django.urls import path
+	urlpatterns = [
+    	]
+12. add a folder to the website directory called templates
+13. add a file called home.html to the templates folder. add "Hello World!" to the folder
+14. create the root url for the new site in the urls.py file in the website folder urlpatterns list and import sections
+	"from . import views"
+	"path('', views.home, name="home"),"
+15. add to the views.py file in the website directory
+	"def home(request):
+		return render(request, 'home.html', {})"
+16. test the newly created page and server by entering into the Bash CL:
+	python manage.py runserver
+17. view the server running by going into a web browser and typing:
+	localhost:8000
+18. use ctrl-c to break out of the server. you will be told how many unapplied migrations you have created that need to be pushed. 
+19. to push the migrations permanently to the DB use the CL command:
+	python manage.py migrate
+20. to create a username to be able to access the servers admin utility enter in the CL while the server isn't running:
+	winpty python manage.py createsuperuser
+21. access the admin utility by running the server again and entering into an empty browser url:
+	localhost:8000/admin
+
